@@ -16,6 +16,7 @@ function App() {
     <Header/>
     
     <div style={{marginTop:'120px'}}>
+      
       <Logo/>
       <Routes>
         <Route path='/' element={<MainPage/>}/>
