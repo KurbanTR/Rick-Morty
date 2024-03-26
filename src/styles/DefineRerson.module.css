@@ -1,0 +1,19 @@
+.img{
+    border-radius: 50%;
+}
+.big{
+    display: flex;
+    justify-content: center;
+
+}
+.text{
+font-size: 45px;
+text-align: center;
+margin-top: 20px;
+}
+.h1{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+
+}
