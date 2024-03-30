@@ -1,8 +1,8 @@
 .character_row{
     display: flex;
     flex-wrap: wrap;
-    gap: 5em;
-    width: 90%;
+    gap: 1em;
+    width: 80%;
     justify-content: center;
 }
 
@@ -41,7 +41,7 @@
 
 
 .character_card{
-    width: 17.6%;
+    width: 22%;
     border-radius: 10px;
     box-shadow: 0px 2px 4px 0px #00000024;
     text-decoration: none;
@@ -77,6 +77,18 @@
     box-shadow: 0px 2px 4px 0px #00000024;
     font-weight: 600;
     font-size: 20px;
+}
+.character_text_info{
+    color: slategrey;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+.character_text_krug{
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;     
 }
 
 @media screen and (max-width: 1000px) and (min-width: 559px){

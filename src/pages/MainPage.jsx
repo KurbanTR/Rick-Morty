@@ -3,6 +3,7 @@ import s from '../styles/MainPage.module.css'
 import Select from 'react-select'
 import { Link } from 'react-router-dom'
 import { pageApi } from '../api/pageApi'
+import { Pagination } from 'antd';
 
 const MainPage = () => {
     const[isLoading, setLoading] = useState(false)
@@ -61,13 +62,19 @@ const MainPage = () => {
 
     }
 
-    
 
     if(isLoading){
         return <h1>Loading</h1>
       }
 
+    const onStatus = (status)=>{
+        const color = ((status == "Alive") ? 'chartreuse' : ((status == "Dead") ? 'red' : ((status == "unknown") ? 'grey' : null)))
+        return <div style={{background: color}} className={s.character_text_krug}></div>
+    }
+    const onChange = (page) => setPage(page)
 
+
+      console.log(data);
     return (
         <>
             <main className={s.character}>
@@ -87,7 +94,7 @@ const MainPage = () => {
                                 <img className={s.character_img} src={item.image} alt="" />
                                 <div className={s.character_text}>
                                     <h1>{item.name}</h1>
-                                    <h5>{item.species}</h5>
+                                    <div className={s.character_text_info}>{onStatus(item.status)}{item.status} - {item.species}</div>
                                 </div>
                             </Link>
                         )}
@@ -95,8 +102,7 @@ const MainPage = () => {
 
                 </div>
                 <div className={s.character_btn}>
-                    <button className={s.page_button} onClick={onHandlePrevPage} disabled={!data?.info.prev}>Prev Page</button>
-                    <button className={s.page_button} onClick={onHandleNextPage} disabled={!data?.info.next}>Next Page</button>
+                    <Pagination  current={+page} onChange={onChange} total={data?.info.pages * 10}/> 
                 </div>
             </main>
         </>

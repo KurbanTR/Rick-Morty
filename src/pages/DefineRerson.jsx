@@ -21,17 +21,22 @@ const DefineRerson = () => {
             <img className={s.img} src={data?.image} alt="" />
             
         </div>
-       <h1 className={s.text}>{data?.name}  </h1> 
+       <h1 className={s.text}>{data?.name}</h1> 
        <div className={s.h1}>
-        <h1>Information</h1>
-        <h1>Episodes</h1>
-       </div>
-       <div className={s.h1}>
-        <div className={s.allInfo}>
-         <h1 className={s.h2}>Gender: <a>{data?.gender}</a></h1>
-         <h1 className={s.h2}>Status: <a>{data?.status}</a></h1>
-         <h1 className={s.h2}>Specie: <a>{data?.species}</a></h1>
-        </div> <div></div>
+        <div className={s.allInfo}><p className={s.p_info}>Information</p>
+         <div>
+          <div className={s.allInfo_1}><h1 ><p className={s.h2}>Gender</p><div className={s.h3}>{data?.gender}</div></h1></div>
+          <div className={s.allInfo_1}><h1 ><p className={s.h2}>Status</p><div className={s.h3}>{data?.status}</div></h1></div>
+          <div className={s.allInfo_1}><h1 ><p className={s.h2}>Specie</p><div className={s.h3}>{data?.species}</div></h1></div>
+          <div className={s.allInfo_1}><h1 ><p className={s.h2}>Origin</p><div className={s.h3}>{data?.origin.name}</div></h1></div>
+          <div className={s.allInfo_1}><h1 ><p className={s.h2}>Location</p><div className={s.h3}>{data?.location.name}</div></h1></div>
+         </div>
+        </div>
+        <div className={s.allInfo}><p className={s.p_info}>Episodes</p>
+        <div>
+          
+         </div>
+        </div>
        </div>
         </>
     )

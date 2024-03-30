@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import s from '../styles/Locations.module.css'
 import { episodeApi } from '../api/episodeApi'
 import { Link } from 'react-router-dom'
+import { Pagination } from "antd";
 
 const Episode = () => {
     const [data, setData] = useState();
@@ -26,6 +27,7 @@ const Episode = () => {
     const onHandlePrevPage = () => {
         setPage(page - 1)
     }
+    const onChange = (page) => setPage(page)
     console.log(data);
       return(
         <>
@@ -51,8 +53,7 @@ const Episode = () => {
 
                 </div>
                 <div className={s.character_btn}>
-                    <button className={s.page_button} onClick={onHandlePrevPage} disabled={!data?.info.prev}>Prev Page</button>
-                    <button className={s.page_button} onClick={onHandleNextPage} disabled={!data?.info.next}>Next Page</button>
+                <Pagination  current={page} onChange={onChange} total={data?.info.pages * 10}/> 
                 </div>
             </main>
         </>

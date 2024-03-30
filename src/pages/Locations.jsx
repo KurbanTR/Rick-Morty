@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import s from '../styles/Locations.module.css'
 import { locationsApi } from '../api/locationsApi'
 import { Link } from 'react-router-dom'
+import { Pagination } from 'antd';
 // import { flexbox } from "@chakra-ui/react";
 
 const Locations = () => {
@@ -28,6 +29,7 @@ const Locations = () => {
     const onHandlePrevPage = () => {
         setPage(page - 1)
     }
+    const onChange = (page) => setPage(page)
     console.log(data);
       return(
         <>
@@ -54,8 +56,7 @@ const Locations = () => {
 
                 </div>
                 <div className={s.character_btn}>
-                    <button className={s.page_button} onClick={onHandlePrevPage} disabled={!data?.info.prev}>Prev Page</button>
-                    <button className={s.page_button} onClick={onHandleNextPage} disabled={!data?.info.next}>Next Page</button>
+                <Pagination  current={page} onChange={onChange} total={data?.info.pages * 10}/> 
                 </div>
             </main>
         </>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import s from '../styles/DefineRerson.module.css'
+import s from '../styles/DefineLandE.module.css'
 import { locationsApi } from "../api/locationsApi";
 
 const DefineLocation = () => {
@@ -17,19 +17,15 @@ const DefineLocation = () => {
       }, [params.id])
     return(
         <>
-        <div className={s.big}>
-            <img className={s.img} src={data?.image} alt="" />
-            
-        </div>
        <h1 className={s.text}>{data?.name}  </h1> 
 
        <div className={s.h1}>
         <div className={s.allInfo}>
-         <h1>Type</h1>
+         <h1 className={s.allInfo_1}>Type</h1>
          <h2>{data?.type}</h2>
         </div> 
         <div>
-          <h1>Dimension</h1>
+          <h1 className={s.allInfo_1}>Dimension</h1>
           <h2>{data?.dimension}</h2>
         </div>
        </div>
