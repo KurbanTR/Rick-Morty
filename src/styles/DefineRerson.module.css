@@ -43,3 +43,14 @@ margin-top: 20px;
     color: #6e798c;
     padding-bottom: 10px;
 }
+@media screen and (max-width: 520px){
+    .h1{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .allInfo{
+        width: 90%;
+        padding-left: 10%;
+    }
+}
