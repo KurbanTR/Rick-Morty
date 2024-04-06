@@ -2,7 +2,6 @@ import './App.css'
 import Header from './components/Header'
 import {Routes, Route} from 'react-router-dom'
 import MainPage from './pages/MainPage'
-import Logo from './components/Logo'
 import DefineRerson from './pages/DefineRerson'
 import DefineEpison from './pages/DefineEpison'
 import Locations from './pages/Locations'
@@ -16,8 +15,7 @@ function App() {
     <Header/>
     
     <div style={{marginTop:'120px'}}>
-      
-      <Logo/>
+    
       <Routes>
         <Route path='/' element={<MainPage/>}/>
         <Route path='/charackter/:id' element={<DefineRerson/>}/>

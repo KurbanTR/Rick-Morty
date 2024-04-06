@@ -4,13 +4,17 @@ import App from './App.jsx'
 import './index.css'
 import {BrowserRouter} from 'react-router-dom'
 import { ChakraProvider } from '@chakra-ui/react'
+import {Provider} from 'react-redux'
+import store from './store/index.js'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ChakraProvider>
-        <App />
-      </ChakraProvider>
+      <Provider store={store}>
+        <ChakraProvider>        
+          <App />        
+        </ChakraProvider>
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
   

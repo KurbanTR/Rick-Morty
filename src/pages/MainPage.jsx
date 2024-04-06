@@ -3,10 +3,12 @@ import s from '../styles/MainPage.module.css'
 import Select from 'react-select'
 import { Link } from 'react-router-dom'
 import { pageApi } from '../api/pageApi'
-import { Pagination } from 'antd';
+import { Pagination } from 'antd'
+import Logo from '../components/Logo'
+import NotData from '../components/NotData'
 
 const MainPage = () => {
-    const[isLoading, setLoading] = useState(false)
+    const[error, setError] = useState(false)
     const [data, setData] = useState()
     const [page, setPage] = useState(1)
     const [status, setStatus] = useState('')
@@ -34,19 +36,21 @@ const MainPage = () => {
         { value: 'female', label: 'Female' },
         { value: 'male', label: 'Male' },
     ]
-    const onHandleNextPage = () => {
-        setPage(page + 1)
-    }
-    const onHandlePrevPage = () => {
-        setPage(page - 1)
-    }
+    
     useEffect(() => {
+        setError(false)
         const getData = async () => {
-            const data = await pageApi.getAllPages({page:page, status: status, gender: gender, species: species, name: name})
-            setData(data.data)
-            setLoading(false)
+            try{
+                const data = await pageApi.getAllPages({page:page, status: status, gender: gender, species: species, name: name})
+                setData(data.data)
+                window.scrollTo({top: 0, behavior: "smooth"})
+            }catch(error){
+                console.error(error.message)
+                setError(true)
+            }
         }
         getData()
+        
     }, [page, status, gender, species, name])
     
     const onHandleChangeSelect = (e) => {
@@ -62,22 +66,16 @@ const MainPage = () => {
 
     }
 
-
-    if(isLoading){
-        return <h1>Loading</h1>
-      }
-
     const onStatus = (status)=>{
         const color = ((status == "Alive") ? 'chartreuse' : ((status == "Dead") ? 'red' : ((status == "unknown") ? 'grey' : null)))
         return <div style={{background: color}} className={s.character_text_krug}></div>
     }
     const onChange = (page) => setPage(page)
 
-
-      console.log(data);
     return (
         <>
             <main className={s.character}>
+                <Logo/>
                 <div className={s.status_wrapper}>
                     <div className={s.character_status}>
                         <input className={s.text} type="text" value={name} onChange={(b) => setName(b.target.value)} placeholder='Пойск по имени' />
@@ -88,21 +86,21 @@ const MainPage = () => {
                 </div>
 
                 <div className={s.characterr_wrapper}>
-                    <section className={s.character_row}>
-                        {data?.error ? <h1>Not Found</h1> : data?.results.map((item, index) =>
+                    
+                        {error ? <NotData/> : <section className={s.character_row}>{data?.results.map((item, index) =>
                             <Link to={`/charackter/${item.id} `} className={s.character_card} key={index}>
                                 <img className={s.character_img} src={item.image} alt="" />
                                 <div className={s.character_text}>
-                                    <h1>{item.name}</h1>
+                                    <h1 className={s.character_text_name}>{item.name}</h1>
                                     <div className={s.character_text_info}>{onStatus(item.status)}{item.status} - {item.species}</div>
-                                </div>
-                            </Link>
-                        )}
-                    </section>
+                                </div>                                
+                            </Link>                            
+                        )}</section>}
+                    
 
                 </div>
                 <div className={s.character_btn}>
-                    <Pagination  current={+page} onChange={onChange} total={data?.info.pages * 10}/> 
+                    <Pagination current={+page} onChange={onChange} total={data && data.info.pages ? data.info.pages * 10 : 0} />
                 </div>
             </main>
         </>

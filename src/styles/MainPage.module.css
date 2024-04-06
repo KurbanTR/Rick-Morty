@@ -1,6 +1,6 @@
 .character_row{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 1em;
     width: 80%;
     justify-content: center;
@@ -36,12 +36,11 @@
 }
 .select{
     width: 17.5%;
-    
 }
 
 
 .character_card{
-    width: 22%;
+    overflow: hidden;
     border-radius: 10px;
     box-shadow: 0px 2px 4px 0px #00000024;
     text-decoration: none;
@@ -52,7 +51,6 @@
     padding: 10px 0px 20px 15px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 .character_img{
@@ -80,32 +78,38 @@
 }
 .character_text_info{
     color: slategrey;
-    font-size: 13px;
+    font-size: 14px;
     display: flex;
     align-items: center;
     gap: 0.5em;
 }
 .character_text_krug{
     border-radius: 50%;
-    width: 10px;
-    height: 10px;     
+    width: 12px;
+    height: 12px;     
 }
-
+.character_text_name{
+    font-size: 20px;
+    font-weight: 600;
+}
 @media screen and (max-width: 1000px) and (min-width: 559px){
+    .character_row{
+        grid-template-columns: repeat(3, 1fr);
+    }
     .character_status{
         gap: 2em
     }
-.text{
-    width: 40%;
-}
-.select{
-    width: 40%;
-}
-.character_card{
-    width: 30%;
-}
+    .text{
+        width: 40%;
+    }
+    .select{
+        width: 40%;
+    }
 }
 @media screen and (max-width: 560px){
+    .character_row{
+        grid-template-columns: repeat(1, 1fr);
+    }
     .character_status{
         gap: 1em
     }
@@ -115,10 +119,10 @@
     .select{
         width: 100%;
     }
-    .character_card{
-        width: 90%;
-    }
     .page_button{
         width: 35%;
+    }
+    s.character_text_info{
+        font-size: 20px;
     }
 }
